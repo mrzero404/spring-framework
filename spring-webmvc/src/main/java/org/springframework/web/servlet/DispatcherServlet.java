@@ -1014,6 +1014,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 				// Determine handler for the current request.
 				mappedHandler = getHandler(processedRequest);
+				//如果找不到映射处理程序返回404
 				if (mappedHandler == null) {
 					noHandlerFound(processedRequest, response);
 					return;
@@ -1032,11 +1033,13 @@ public class DispatcherServlet extends FrameworkServlet {
 					}
 				}
 
+				//请求处理前调用拦截器
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
 
 				// Actually invoke the handler.
+				//交给controller处理
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
 				if (asyncManager.isConcurrentHandlingStarted()) {
@@ -1044,6 +1047,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				applyDefaultViewName(processedRequest, mv);
+				//请求处理后调用拦截器
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
 			}
 			catch (Exception ex) {
