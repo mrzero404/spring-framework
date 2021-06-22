@@ -274,6 +274,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	public Object resolveCandidate(String beanName, Class<?> requiredType, BeanFactory beanFactory)
 			throws BeansException {
 
+		//通过类型找到beanName,然后再找到其实例
 		return beanFactory.getBean(beanName);
 	}
 
