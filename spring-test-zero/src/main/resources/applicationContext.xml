@@ -7,4 +7,6 @@
 
 	<bean id="hello" class="club.mrzero.spring.HelloBean"/>
 
+	<bean id="myPost" class="club.mrzero.spring.context.MyBeanFactoryPostProcessor"></bean>
+
 </beans>

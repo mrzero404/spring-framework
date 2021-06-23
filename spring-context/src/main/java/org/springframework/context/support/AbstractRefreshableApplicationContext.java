@@ -132,9 +132,16 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			 * 首先要实例化。
 			 */
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
+			//为了序列化指定id,如果需要的话，让这个BeanFactory从id反序列化到BeanFactory对象
 			beanFactory.setSerializationId(getId());
+			//定制beanFactory，设置相关属性，包括是否允许覆盖同名称的不同定义的对象以及循环依赖以及设置
+			//@Autowired和Qualifier注解解析器QualifierAnnotationAutowireCandidateResolver
 			customizeBeanFactory(beanFactory);
+			//加载BeanDefiniton
 			loadBeanDefinitions(beanFactory);
+			//使用全局变量记录BeanFactory实例。
+			//因为DefaultListableBeanFactory类型的变量beanFactory是函数内部的局部变量，
+			//所以要使用全局变量记录解析结果
 			this.beanFactory = beanFactory;
 		}
 		catch (IOException ex) {
