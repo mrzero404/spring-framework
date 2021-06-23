@@ -13,7 +13,11 @@ public class AppTest {
 	@Test
 	public void MyTestBeanTest() {
 		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring-config.xml"));
+		BeanFactory bf2 = new XmlBeanFactory( new ClassPathResource("spring-config.xml"));
 		MyTestBean myTestBean = (MyTestBean) bf.getBean("myTestBean");
+		MyTestBean myTestBean2 = (MyTestBean) bf2.getBean("myTestBean");
 		System.out.println(myTestBean.getName());
+		myTestBean.setName("test");
+		System.out.println(myTestBean2.getName());
 	}
 }
