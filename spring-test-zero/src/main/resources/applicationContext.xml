@@ -3,10 +3,8 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="myTestBean" class="club.mrzero.spring.MyTestBean"/>
+	<bean id="myBeanAware" class="club.mrzero.spring.MyBeanAware"/>
 
-	<bean id="populateBeanTest" class="club.mrzero.spring.PopulateBeanTest">
-		<property name="name" value="chenhao"></property>
-	</bean>
+	<bean id="hello" class="club.mrzero.spring.HelloBean"/>
 
 </beans>
