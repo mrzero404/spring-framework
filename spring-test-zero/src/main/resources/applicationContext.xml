@@ -9,4 +9,8 @@
 
 	<bean id="myPost" class="club.mrzero.spring.context.MyBeanFactoryPostProcessor"></bean>
 
+	<bean class="club.mrzero.spring.context.MyInstantiationAwareBeanPostProcessor"/>
+
+	<bean id="testListener" class="club.mrzero.spring.context.TestListener"></bean>
+
 </beans>

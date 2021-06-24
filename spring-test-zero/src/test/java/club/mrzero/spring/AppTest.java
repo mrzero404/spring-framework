@@ -1,5 +1,6 @@
 package club.mrzero.spring;
 
+import club.mrzero.spring.context.TestEvent;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -42,5 +43,12 @@ public class AppTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MyBeanAware test = (MyBeanAware)ctx.getBean("myBeanAware");
 		test.testAware();
+	}
+
+	@Test
+	public void MyAopTest() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		TestEvent event = new TestEvent("hello" ,"msg") ;
+		context.publishEvent(event);
 	}
 }
