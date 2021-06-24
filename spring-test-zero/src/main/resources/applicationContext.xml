@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/aop
+	   http://www.springframework.org/schema/aop/spring-aop.xsd
+">
 
 	<bean id="myBeanAware" class="club.mrzero.spring.MyBeanAware"/>
 
@@ -12,5 +18,11 @@
 	<bean class="club.mrzero.spring.context.MyInstantiationAwareBeanPostProcessor"/>
 
 	<bean id="testListener" class="club.mrzero.spring.context.TestListener"></bean>
+
+	<aop:aspectj-autoproxy/>
+	<bean id="test" class="club.mrzero.spring.aop.TestBean">
+		<property name="message" value="这是一个苦逼的程序员"/>
+	</bean>
+	<bean id="aspect" class="club.mrzero.spring.aop.AspectJTest"/>
 
 </beans>
