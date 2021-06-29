@@ -5,7 +5,7 @@ import org.springframework.beans.factory.config.InstantiationAwareBeanPostProces
 
 public class MyInstantiationAwareBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
-        System.out.println("befor");
+        System.out.println("invode postProcessBeforeInstantiation do something");
         return null;
     }
 }

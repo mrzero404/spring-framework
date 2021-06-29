@@ -33,6 +33,8 @@ import org.springframework.util.Assert;
  * @author Rod Johnson
  * @see AfterReturningAdviceInterceptor
  * @see ThrowsAdviceInterceptor
+ *
+ * MethodBeforeAdviceInterceptor实现了MethodInterceptor接口，实现了invoke方法，并将advice作为属性
  */
 @SuppressWarnings("serial")
 public class MethodBeforeAdviceInterceptor implements MethodInterceptor, BeforeAdvice, Serializable {
@@ -52,7 +54,10 @@ public class MethodBeforeAdviceInterceptor implements MethodInterceptor, BeforeA
 
 	@Override
 	public Object invoke(MethodInvocation mi) throws Throwable {
+		// 终于开始做事了，调用增强器的before方法，明显是通过反射的方式调用
+		// 到这里增强方法before的业务逻辑执行
 		this.advice.before(mi.getMethod(), mi.getArguments(), mi.getThis());
+		// 又调用了调用MethodInvocation的proceed方法
 		return mi.proceed();
 	}
 

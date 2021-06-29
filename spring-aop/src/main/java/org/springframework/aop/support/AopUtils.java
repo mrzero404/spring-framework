@@ -345,6 +345,7 @@ public abstract class AopUtils {
 		// Use reflection to invoke the method.
 		try {
 			ReflectionUtils.makeAccessible(method);
+			//直接通过反射调用目标bean中的method
 			return method.invoke(target, args);
 		}
 		catch (InvocationTargetException ex) {

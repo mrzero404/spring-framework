@@ -42,6 +42,10 @@ import org.springframework.aop.SpringProxy;
  * @see AdvisedSupport#setOptimize
  * @see AdvisedSupport#setProxyTargetClass
  * @see AdvisedSupport#setInterfaces
+ *
+ * 如果目标对象实现了接口，默认情况下会采用JDK的动态代理实现AOP。
+ * 如果目标对象实现了接口，可以强制使用CGLIB实现AOP。
+ * 如果目标对象没有实现了接口，必须采用CGLIB库，Spring会自动在JDK动态代理 和CGLIB之间转换。
  */
 @SuppressWarnings("serial")
 public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
@@ -54,12 +58,15 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 				throw new AopConfigException("TargetSource cannot determine target class: " +
 						"Either an interface or a target is required for proxy creation.");
 			}
+			//手动设置创建Cglib代理类后，如果目标bean是一个接口，也要创建jdk代理类
 			if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
 				return new JdkDynamicAopProxy(config);
 			}
+			//创建Cglib代理
 			return new ObjenesisCglibAopProxy(config);
 		}
 		else {
+			//默认创建jdk代理
 			return new JdkDynamicAopProxy(config);
 		}
 	}
