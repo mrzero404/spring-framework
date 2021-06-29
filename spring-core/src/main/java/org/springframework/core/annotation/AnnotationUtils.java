@@ -751,6 +751,7 @@ public abstract class AnnotationUtils {
 	@Nullable
 	private static <A extends Annotation> A findAnnotation(Class<?> clazz, Class<A> annotationType, Set<Annotation> visited) {
 		try {
+			//判断此Class 是否存在Aspect.class注解
 			A annotation = clazz.getDeclaredAnnotation(annotationType);
 			if (annotation != null) {
 				return annotation;
