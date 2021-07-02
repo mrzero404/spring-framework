@@ -14,9 +14,17 @@ dependencies {
     compile(project(":spring-core"))
     compile(project(":spring-context"))
     compile(project(":spring-aop"))
+    compile(project(":spring-tx"))
+    compile(project(":spring-jdbc"))
+    // https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp
+    implementation group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.26'
+
     optional("org.aspectj:aspectjweaver:${aspectjVersion}")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
 test {
     useJUnitPlatform()
 }
